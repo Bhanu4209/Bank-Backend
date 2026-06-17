@@ -1,5 +1,5 @@
 const express = require("express")
-const authMiddleware = require("../middlewares/auth.Middleware")
+const authMiddleware = require("../middlewares/auth.middleware")
 const accountController = require("../controllers/account.controller")
 
 console.log(authMiddleware);
