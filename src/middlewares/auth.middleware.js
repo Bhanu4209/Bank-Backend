@@ -15,7 +15,7 @@ async function authMiddleware(req,res,next){
 
     const isBlackListed = await tokenBlackListModel.findOne({token})
 
-    if (!isBalckListed){
+    if (isBlackListed){
         return res.status(401).json({
             message:"Unauthorized access, token is invalid"
         })
@@ -45,7 +45,7 @@ async function authSystemUserMiddleware(req,res,next){
 
     const isBlackListed = await tokenBlackListModel.findOne({token})
 
-    if (!isBalckListed){
+    if (isBlackListed){
         return res.status(401).json({
             message:"Unauthorized access, token is invalid"
         })

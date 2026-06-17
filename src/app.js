@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
 const authRouter = require("./routes/auth.routes");
 const accountRoutes = require("./routes/account.route");
@@ -10,8 +11,16 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+
 app.get("/", (req,res) =>
 res.send("Ledger Server is up and running"))
+
+app.use(cors({
+  origin: [
+    "https://bank-frontend-njrj67qsm-bhanu4209s-projects.vercel.app"
+  ],
+  credentials: true
+}));
 
 app.use("/api/auth", authRouter);
 app.use("/api/accounts", accountRoutes);
