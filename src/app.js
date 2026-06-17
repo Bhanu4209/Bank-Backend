@@ -13,6 +13,7 @@ app.use(cookieParser());
 
 app.use(cors({
   origin: [
+    "https://bank-frontend-sage.vercel.app",
     "https://bank-frontend-njrj67qsm-bhanu4209s-projects.vercel.app",
     "https://bank-frontend-git-main-bhanu4209s-projects.vercel.app"
   ],
