@@ -1,11 +1,21 @@
-const dns = require("dns");
+require("dotenv").config();
 
-dns.setServers(["1.1.1.1"]);
+const app = require("./src/app.js");
+const connectToDB = require("./src/config/db");
 
-dns.resolveSrv(
-    "_mongodb._tcp.cluster0.ygj9vbw.mongodb.net",
-    (err, addresses) => {
-        console.log("ERROR:", err);
-        console.log("ADDRESSES:", addresses);
+const PORT = process.env.PORT || 3000;
+
+const startServer = async () => {
+    try {
+        await connectToDB();
+
+        app.listen(PORT, () => {
+            console.log(`Server started on port ${PORT}`);
+        });
+    } catch (error) {
+        console.error("Database connection failed:", error);
+        process.exit(1);
     }
-);
+};
+
+startServer();
