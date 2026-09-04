@@ -1,11 +1,11 @@
-require("dotenv").config();
-const app = require("./src/app.js")
-const connectToDB = require("./src/config/db")
 const dns = require("dns");
 
-dns.setServers(["1.1.1.1", "8.8.8.8"]);
+dns.setServers(["1.1.1.1"]);
 
-connectToDB()
-app.listen(3000, () =>{
-    console.log("server is started on 3000")
-})
+dns.resolveSrv(
+    "_mongodb._tcp.cluster0.ygj9vbw.mongodb.net",
+    (err, addresses) => {
+        console.log("ERROR:", err);
+        console.log("ADDRESSES:", addresses);
+    }
+);
